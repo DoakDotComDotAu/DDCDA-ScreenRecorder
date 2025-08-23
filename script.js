@@ -61,17 +61,46 @@ async function startCapture() {
             finalAudioTrack = dest.stream.getAudioTracks()[0] || null;
         }
 
-        // Compose final stream
-        mixedStream = new MediaStream();
-        const vtrack = displayStream.getVideoTracks()[0];
-        if (vtrack) mixedStream.addTrack(vtrack);
-        if (finalAudioTrack) mixedStream.addTrack(finalAudioTrack);
+// ---- WATERMARK INJECTION ----
+const displayTrack = displayStream.getVideoTracks()[0];
+const videoEl = document.createElement("video");
+videoEl.srcObject = new MediaStream([displayTrack]);
+videoEl.play();
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 1280; // change to your recording resolution
+canvas.height = 720;
+
+function draw() {
+    ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
+
+    // Draw background bar
+    const barHeight = 40;
+    ctx.fillStyle = "rgba(0,0,0,0.6)"; // semi-transparent black
+    ctx.fillRect(0, 0, canvas.width, barHeight);
+
+    // Draw watermark text
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("gc.doak.com.au - DDCDA Screen Recorder - gc.doak.com.au", canvas.width / 2, 28);
+
+    requestAnimationFrame(draw);
+}
+draw();
+
+const canvasStream = canvas.captureStream(parseInt(fpsSel.value));
+mixedStream = new MediaStream();
+mixedStream.addTrack(canvasStream.getVideoTracks()[0]);
+if (finalAudioTrack) mixedStream.addTrack(finalAudioTrack);
+// ---- END WATERMARK INJECTION ----
 
         // Preview
         preview.srcObject = mixedStream;
 
         // Recorder
-        const vbps = parseInt(bitrateSel.value) * 1000; // to bps
+        const vbps = parseInt(bitrateSel.value) * 1000;
         let mime = 'video/webm;codecs=vp9,opus';
         if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm;codecs=vp8,opus';
         if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm';
@@ -87,7 +116,6 @@ async function startCapture() {
                 chunks.push(e.data);
                 const totalSize = chunks.reduce((a, c) => a + c.size, 0);
                 sizeEl.textContent = (totalSize / (1024 * 1024)).toFixed(1) + ' MB';
-                // progress is fake (we don't know total), but animates while recording
                 const w = parseFloat(bar.style.width) || 0;
                 bar.style.width = ((w + 3) % 100) + '%';
             }
@@ -113,7 +141,6 @@ async function startCapture() {
             const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'video/webm' });
             const url = URL.createObjectURL(blob);
             dl.href = url; dl.hidden = false;
-            // free preview
             if (preview.srcObject) preview.srcObject.getTracks().forEach(t => t.stop());
             preview.srcObject = null;
             setStatus('Saved');
@@ -123,7 +150,7 @@ async function startCapture() {
             pauseBtn.textContent = 'Pause';
         };
 
-        mediaRecorder.start(250); // collect data every 250ms
+        mediaRecorder.start(250);
         setStatus('Starting…');
 
     } catch (err) {
@@ -178,10 +205,7 @@ function openPopup() {
     );
 }
 
-// Wire up UI
 startBtn.addEventListener('click', startCapture);
 stopBtn.addEventListener('click', stopCapture);
 pauseBtn.addEventListener('click', pauseResume);
-
-// Tidy up on unload
 window.addEventListener('beforeunload', cleanup);
