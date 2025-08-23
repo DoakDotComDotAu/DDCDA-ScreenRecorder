@@ -141,8 +141,14 @@
     video {
         width: 100%;
         aspect-ratio: 16/9;
-        background: #000;
+        background-image: url("./assets/video/idle_capture.png");
+        background-size: cover;
         border-bottom: 1px solid #1b2736
+    }
+
+    video .finished {
+        background-image: url("./assets/video/finished_capture.png");
+        background-size: cover;
     }
 
     .bar {
@@ -176,6 +182,10 @@
         text-decoration: none
     }
 
+    a {
+        color: #69adff;
+    }
+
     .progress {
         height: 6px;
         background: #0f1722;
@@ -199,6 +209,12 @@
     }
 
     .icon-placeholder img {
+        height: 128px;
+        image-rendering: pixelated;
+        max-width: 100%;
+    }
+
+    .icon-placeholder .dark img {
         height: 128px;
         image-rendering: pixelated;
         max-width: 100%;

@@ -4,17 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style_loader.css" />
+  <link rel="stylesheet" href="style_ldtoggle.css" />
   <title>DDCDA Screen Recorder</title>
-  <link rel="icon" type="image/x-icon" href="https://gc.doak.com.au/icon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
-<body>
-  <div class="wrap">
-    <div class="icon-placeholder"><img src="https://gc.doak.com.au/ddcda_full.png">
+<body onload="myFunction()">
+  <div id="loader"></div>
+  <div class="wrap animate-bottom" id="wrap" style="display: none;"><br>
+    <button class="toggle-btn" id="toggleMode">Toggle Dark/Light</button>
+    <div class="icon-placeholder"><img src="assets/ddcda_dark.png" id="icon">
       <h1>Screen Recorder</h1>
       <small>Capture screen + optional mic, save as WebM</small></div>
     <div class="grid">
       <div class="card" id="controls">
-        <h2>Controls</h2>
+        <h2>Controls & Settings</h2>
         <div class="content">
           <label>
             Video bitrate (kbps)
@@ -28,16 +32,19 @@
           <label>
             Frame rate (fps)
             <select id="fps">
-              <option>30</option>
               <option selected>60</option>
+              <option>50</option>
+              <option>45</option>
+              <option>30</option>
+              <option>25</option>
             </select>
           </label>
           <label>
-            Include system/tab audio
-            <input id="sysAudio" type="checkbox" checked />
+            Record system/tab audio
+            <input id="sysAudio" type="checkbox" />
           </label>
           <label>
-            Include microphone
+            Record microphone
             <input id="micAudio" type="checkbox" />
           </label>
           <div class="row">
@@ -46,13 +53,17 @@
             <button class="btn danger" id="stopBtn" disabled>Stop & Save</button>
           </div>
           <div class="row">
-            <span class="badge" id="status">Idle</span>
-            <span class="muted" id="timer">00:00</span>
+            <span class="kbd" id="status">Idle</span>
+            <span class="muted">Time Recorded: <span id="timer">00:00</span></span>
           </div>
           <div class="hint">
-            For system audio, share a tab/window that has audio and tick "Share tab audio" if your browser shows it.
-            This website works best on Chromium-based browsersand requires HTTPS.
-            <b>If you encounter bugs, please email us at <a href="mailto:info@gc.doak.com.au">info@gc.doak.com.au</a>. Please do not report bugs to our bug reporting system.</b>
+            <ul>
+              <li>For system audio, share a tab/window that has audio and tick "Share tab audio" if your browser shows it.</li>
+              <li>For microphone, ensure your browser has permission to access the mic.</li>
+              <li>HTTPS is required to use this website, not standard HTTP.</li>
+              <li>For best results, use Chrome or Firefox browsers.</li>
+              <li>Recordings are saved as WebM files, which are widely supported.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -69,9 +80,23 @@
           <a id="downloadLink" class="download" download="recording.webm" hidden>Download recording</a>
         </div>
       </div>
+    </div><br>
+    <div class="card">
+      <h2>About</h2>
+      <div class="content">
+        <p>
+          The DDCDA Screen Recorder is a simple tool to capture your screen and optionally include microphone audio.
+          It uses the MediaStream Recording API to create high-quality WebM recordings.
+          This tool was developed by the developer of <a href="https://gc.doak.com.au">DDCDA</a>.
+          If you have any questions or feedback, please contact us at <a href="mailto:info@gc.doak.com.au">info@gc.doak.com.au</a>.
+        </p>
+      </div>
     </div>
   </div>
+  <br><br>
 
   <script src="script.js"></script>
+  <script src="script_loader.js"></script>
+  <script src="script_ldtoggle.js"></script>
 </body>
 </html>

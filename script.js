@@ -84,7 +84,7 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
-    ctx.fillText("gc.doak.com.au - DDCDA Screen Recorder - gc.doak.com.au", canvas.width / 2, 28);
+    ctx.fillText(">>> DDCDA Screen Recorder <<<", canvas.width / 2, 28);
 
     requestAnimationFrame(draw);
 }
@@ -197,13 +197,13 @@ function cleanup() {
     bar.style.width = '0%';
 }
 
-function openPopup() {
-    let popup = window.open(
-        "lite.html",
-        "popupWindow",
-        "width=570,height=651,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,resizable=no"
-    );
-}
+// function openPopup() {
+//     let popup = window.open(
+//         "index.html",
+//         "popupWindow",
+//         "width=570,height=651,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,resizable=no"
+//     );
+// }
 
 startBtn.addEventListener('click', startCapture);
 stopBtn.addEventListener('click', stopCapture);
