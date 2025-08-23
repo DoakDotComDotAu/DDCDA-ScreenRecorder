@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>DDCDA Screen Recorder</title>
+  <link rel="icon" type="image/x-icon" href="https://gc.doak.com.au/icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <div class="icon-placeholder"><img src="https://gc.doak.com.au/ddcda_full.png">
+      <h1>Screen Recorder</h1>
+      <small>Capture screen + optional mic, save as WebM</small></div>
+    <div class="grid">
+      <div class="card" id="controls">
+        <h2>Controls</h2>
+        <div class="content">
+          <label>
+            Video bitrate (kbps)
+            <select id="bitrate">
+              <option value="2500">2500 (720p)</option>
+              <option value="4500" selected>4500 (1080p)</option>
+              <option value="8000">8000 (high)</option>
+              <option value="12000">12000 (very high)</option>
+            </select>
+          </label>
+          <label>
+            Frame rate (fps)
+            <select id="fps">
+              <option>30</option>
+              <option selected>60</option>
+            </select>
+          </label>
+          <label>
+            Include system/tab audio
+            <input id="sysAudio" type="checkbox" checked />
+          </label>
+          <label>
+            Include microphone
+            <input id="micAudio" type="checkbox" />
+          </label>
+          <div class="row">
+            <button class="btn primary" id="startBtn">Start Capture</button>
+            <button class="btn secondary" id="pauseBtn" disabled>Pause</button>
+            <button class="btn danger" id="stopBtn" disabled>Stop & Save</button>
+          </div>
+          <div class="row">
+            <span class="badge" id="status">Idle</span>
+            <span class="muted" id="timer">00:00</span>
+          </div>
+          <div class="hint">
+            For system audio, share a tab/window that has audio and tick "Share tab audio" if your browser shows it.
+            This website works best on Chromium-based browsersand requires HTTPS.
+            <b>If you encounter bugs, please email us at <a href="mailto:info@gc.doak.com.au">info@gc.doak.com.au</a>. Please do not report bugs to our bug reporting system.</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Preview</h2>
+        <video id="preview" autoplay playsinline muted></video>
+        <div class="progress"><div id="progressBar"></div></div>
+        <div class="bar">
+          <div class="row">
+            <span class="kbd">REC</span>
+            <span id="size" class="muted">0.0 MB</span>
+          </div>
+          <a id="downloadLink" class="download" download="recording.webm" hidden>Download recording</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
