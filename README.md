@@ -7,4 +7,4 @@ You can access the website on our [Github Page](https://doakdotcomdotau.github.i
 If you have any issues, please record them on our Issues page on this repository or by sending an email to [this email](mailto:info@gc.doak.com.au).
 
 ## Gallery
-![Preview of a website.](preview.png)
+![Preview of a website.]([preview.png](https://github.com/DoakDotComDotAu/DDCDA-ScreenRecorder/blob/main/preview.png?raw=true))
