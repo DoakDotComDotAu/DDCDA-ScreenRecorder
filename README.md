@@ -9,4 +9,4 @@ If you have any issues, please record them on our Issues page on this repository
 ## Gallery
 ![Preview of a website.](preview.png)
 <br>
-[![Media](https://gc.doak.com.au/videos/preview.mp4)](https://camo.githubusercontent.com/e8308f2a1c74f008b6267ffd41b3ffe52266abf3698119ac5e9911ef6929f95d/68747470733a2f2f67632e646f616b2e636f6d2e61752f766964656f732f707265766965772e6d7034)
+[![Watch the video](assets/idle_capture.png)](https://gc.doak.com.au/videos/preview.mp4)
