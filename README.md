@@ -8,3 +8,5 @@ If you have any issues, please record them on our Issues page on this repository
 
 ## Gallery
 ![Preview of a website.](preview.png)
+<br>
+![Exported media of a screen recorder.](https://gc.doak.com.au/videos/preview.mp4)
