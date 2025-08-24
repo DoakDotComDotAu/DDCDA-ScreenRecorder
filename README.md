@@ -9,6 +9,4 @@ If you have any issues, please record them on our Issues page on this repository
 ## Gallery
 ![Preview of a website.](preview.png)
 <br>
-<video width="320" height="240" controls>
-  <source src="https://gc.doak.com.au/videos/preview.mp4" type="video/mp4">
-</video>
+https://gc.doak.com.au/videos/preview.mp4
