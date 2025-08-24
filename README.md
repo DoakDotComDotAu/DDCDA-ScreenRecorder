@@ -9,4 +9,4 @@ If you have any issues, please record them on our Issues page on this repository
 ## Gallery
 ![Preview of a website.](preview.png)
 <br>
-[![Watch the video](assets/idle_capture.png)](https://gc.doak.com.au/videos/preview.mp4)
+[Video: Recording of someone playing Geometry Dash using the DDCDA Screen Recorder.](https://gc.doak.com.au/videos/preview.mp4)
