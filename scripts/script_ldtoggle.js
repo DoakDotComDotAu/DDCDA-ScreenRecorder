@@ -9,7 +9,7 @@ if (localStorage.getItem("theme") === "dark") {
 
 toggleBtn.addEventListener("click", () => {
     body.classList.toggle("dark");
-    logo.src = body.classList.contains("dark") ? "../assets/ddcda_light.png" : "../assets/ddcda_dark.png";
+    logo.src = body.classList.contains("dark") ? "assets/ddcda_light.png" : "assets/ddcda_dark.png";
 
     // Save preference
     if (body.classList.contains("dark")) {
